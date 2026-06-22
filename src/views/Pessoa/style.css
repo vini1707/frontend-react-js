@@ -1,0 +1,23 @@
+table {
+    border-collapse: collapse;
+
+    td,th {
+
+        border: 1px solid black;
+        padding: 20px;
+    }
+
+    .btn-editar{
+        border: 5px solid rgb(10, 32, 129);
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .btn-excluir{
+        border: 5px solid rgb(182, 23, 23);
+        padding: 10px;
+        margin: 10px;
+    }
+
+    
+}

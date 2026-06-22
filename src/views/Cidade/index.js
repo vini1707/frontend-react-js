@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import './style.css';
 
 import Header from "../../components/Header";
@@ -10,6 +12,16 @@ export default function Cidade() {
     const [uf, setUf] = useState("");
     const [cidades, setCidades] = useState([]);
     const [idEdicao, setIdEdicao] = useState(null);
+    const navigate = useNavigate();
+
+
+    function navigateHome() {
+        return navigate("/");
+    }
+
+    function navigatePessoa() {
+        return navigate("/pessoa");
+    }
 
     const carregarCidades = async() => {
         try {
@@ -70,7 +82,7 @@ export default function Cidade() {
         <>
         <Header />
             <div className="container">
-                <h1>Cadastro de Cidades</h1>
+                <h1><em>Cadastro de Cidades</em></h1>
                 <form onSubmit={salvar} >
                     <input 
                         type="text"
@@ -109,10 +121,10 @@ export default function Cidade() {
                 <table>
                     <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>UF</th>
-                            <th>Ações</th>
+                            <th><em>ID</em></th>
+                            <th><em>Nome</em></th>
+                            <th><em>UF</em></th>
+                            <th><em>Ações</em></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -123,17 +135,31 @@ export default function Cidade() {
                                 <td>{cidade.uf}</td>
                                 <td>
                                     
-                                    <button onClick={() => editar(cidade)}>Editar</button>
-                                    <button>Excluir</button>
+                                    <button className="btn-editar" onClick={() => editar(cidade)}>Editar</button>
+                                    <button className="btn-excluir" onClick={() => excluir(cidade.id)}>Excluir</button>
                                 </td>
                             </tr>
 
                         ))}
                     </tbody>
                 </table>
+
+                <div className="botoes">
+                    <input
+                        type='submit'
+                        value='Home'
+                        onClick={navigateHome}
+                    />
+                    <input
+                        type='submit'
+                        value='Manutenção de Pessoas'
+                        onClick={navigatePessoa}
+                    />
+                </div>
             </div>
 
         <Footer />
         </>
     );
 }
+
